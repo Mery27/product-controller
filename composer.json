@@ -1,0 +1,20 @@
+{
+    "name": "legio/merenda",
+    "description": "Search product from DB.",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Conf\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jiří Merenda",
+            "email": "j.merenda@seznam.cz"
+        }
+    ],
+    "require": {
+        "psr/simple-cache": "^3.0",
+        "symfony/cache": "^7.0"
+    }
+}
