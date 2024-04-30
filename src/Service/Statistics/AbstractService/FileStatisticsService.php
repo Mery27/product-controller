@@ -29,15 +29,17 @@ abstract class FileStatisticsService implements StatisticsServiceInterface
             $this->dir = AppConfiguration::pathToDir(AppConfiguration::STATISTICS_DIR);
         }
 
-        // Set file name from
-        $this->file = static::DEFAULT_FILE . '.' . static::DEFAULT_FILE_EXTENSION;
-        
+        if ($file === null) {
+            // Set file name from
+            $this->file = static::DEFAULT_FILE . '.' . static::DEFAULT_FILE_EXTENSION;
+        }
+
         // Set absolute path to the statistics file
         $this->pathToFile = $this->pathToFile($this->file, $this->dir);
 
         // Create dir with file if dont exists
-        $this->createFile($this->pathToFile, data: '', serializeData: false);
         $this->createDir($this->dir);
+        $this->createFile($this->pathToFile, data: '', serializeData: false);
     }
 
     /**
