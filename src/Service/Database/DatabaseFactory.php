@@ -6,6 +6,7 @@ namespace App\Service\Database;
 
 use App\ClassFactory;
 use App\Config\AppConfiguration;
+use App\ServiceFactoryInterface;
 
 /**
  * According to the settings, it creates a service class and checks if there is a file for it and if it contains the required interface
@@ -14,9 +15,9 @@ use App\Config\AppConfiguration;
  * 
  * Use const DATABASE_SERVICE from AppConfiguration file
  */
-class DatabaseFactory
+class DatabaseFactory implements ServiceFactoryInterface
 {
-    private ?DatabaseServiceInterface $currentDatabase;
+    private DatabaseServiceInterface $currentDatabase;
 
     public function __construct()
     {
@@ -26,9 +27,9 @@ class DatabaseFactory
     /**
      * Return Database Service class from selected DB in app settings
      * 
-     * @return ?DatabaseServiceInterface
+     * @return DatabaseServiceInterface
      */
-    public function getService(): ?DatabaseServiceInterface
+    public function getService(): DatabaseServiceInterface
     {
         return $this->currentDatabase;
     }

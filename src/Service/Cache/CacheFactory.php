@@ -6,6 +6,7 @@ namespace App\Service\Cache;
 
 use App\ClassFactory;
 use App\Config\AppConfiguration;
+use App\ServiceFactoryInterface;
 use Psr\SimpleCache\CacheInterface;
 
 /**
@@ -15,10 +16,10 @@ use Psr\SimpleCache\CacheInterface;
  * 
  * Use const CACHE_SERVICE from AppConfiguration file
  */
-class CacheFactory
+class CacheFactory implements ServiceFactoryInterface
 {
 
-    private ?CacheInterface $currentCache;
+    private CacheInterface $currentCache;
 
     public function __construct()
     {
@@ -28,9 +29,9 @@ class CacheFactory
     /**
      * Return Database Service class from selected cache in app settings
      * 
-     * @return ?CacheInterface
+     * @return CacheInterface
      */
-    public function getService(): ?CacheInterface
+    public function getService(): CacheInterface
     {
         return $this->currentCache;
     }
@@ -50,6 +51,5 @@ class CacheFactory
 
         return $selectedClass->getClass();
     }
-
 
 }
