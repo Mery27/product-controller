@@ -6,9 +6,7 @@ namespace App\Controller;
 
 use App\Service\Cache\CacheFactory;
 use App\Service\Product\ProductService;
-use App\Service\Statistics\StatisticsFactory;
-use App\Service\Statistics\CSVStatisticsService;
-use App\Service\Statistics\PlainTextStatisticsService;
+use App\Service\Statistics\StatisticService;
 
 class ProductController
 {
@@ -36,17 +34,9 @@ class ProductController
         // Used cache service to return product
         $product = $productService->getProductWithCache($id, $cache->getService());
 
-        // Process product statistics to the file
-        $statFactory = new StatisticsFactory(PlainTextStatisticsService::class);
-        // Just dump statistics service which work, but dont return any data
-        // $statFactory = new StatisticsFactory(CSVStatisticsService::class);
-        
-        // Load statisic service
-        $stat = $statFactory->getService();
-        // Increment data for specific id
-        $stat->addData($product);
-        // Save change to the file
-        $stat->setData();
+        // Create a file with statistics of total request for the product
+        $statisticService = new StatisticService();
+        $statisticService->setProductStatistics($product);
 
         // Create JSON ouput
         $product = json_encode($product);

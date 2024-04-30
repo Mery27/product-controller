@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace App\Service\Statistics;
+
+use App\Config\AppConfiguration;
 use App\ServiceFactoryInterface;
 
 /**
@@ -12,7 +14,7 @@ use App\ServiceFactoryInterface;
  */
 class StatisticsFactory implements ServiceFactoryInterface
 {
-    public function __construct(private string $statisticService)
+    public function __construct(private string $statisticService = AppConfiguration::STATISTICS_SERVICE_DIR . '\\' . AppConfiguration::STATISTICS_SERVICE)
     {
     }
 

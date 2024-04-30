@@ -38,6 +38,9 @@ class AppConfiguration
      */
     const CACHE_DIR = '/var/cache';
 
+    const STATISTICS_SERVICE = 'PlainTextStatisticsService';
+    const STATISTICS_SERVICE_DIR = 'App\Service\Statistics';
+    
     /**
      * Dir where we saved statistic file
      */
