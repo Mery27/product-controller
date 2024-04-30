@@ -29,8 +29,9 @@ CacheFactory nebo DatabaseFactory tuto volbu zpracuje a vrátí požadovou class
 
 Vytvoření nové servisy např. `CSVStatisticsService`, která by měla mít implementovanou `StatisticsServiceInterface`.
 
-Tato změna není zahrnuta v nastavení a je potřeba nově vytvořenou servisu zpracovat v `ProductControlleru`.
+V nastavení zvolíme, kterou servisu budou statistiky používat.
 
-    $statFactory = new StatisticsFactory(PlainTextStatisticsService::class);
+    $statFactory = new StatisticsFactory();
+    $stat = $statFactory->getService();
 
-Změníme `PlainTextStatisticsService::class` na nově vytvořenou servisu tedy `CSVStatisticsService::class`.
+Servisa `CSVStatisticsService` žádné data nezpracovává ani neukládá, pouze dojde k vytvoření prázdného souboru.
