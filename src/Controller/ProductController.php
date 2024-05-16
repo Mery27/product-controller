@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Service\Cache\CacheFactory;
 use App\Service\Product\ProductService;
 use App\Service\Statistics\StatisticService;
 
@@ -27,12 +26,8 @@ class ProductController
         // load product depends on the database service which is set on the settings
         // (from MySQL or ES)
         $productService = new ProductService();
-        
-        // Load cache service depends on the settings        
-        $cache = new CacheFactory();
-
         // Used cache service to return product
-        $product = $productService->getProductWithCache($id, $cache->getService());
+        $product = $productService->getProductWithCache($id);
 
         // Create a file with statistics of total request for the product
         $statisticService = new StatisticService();
